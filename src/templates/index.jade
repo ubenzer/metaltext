@@ -1,0 +1,22 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name='description', content='')
+    meta(name='author', content='')
+    link(rel='shortcut icon', href='#{$template.assets}/assets/ico/favicon.png')
+    title= pageTitle
+    // CSS
+    link(href='#{$template.assets}/css/bootstrap.min.css', rel='stylesheet')
+    link(href='#{$template.assets}/css/bootstrap-theme.min.css', rel='stylesheet')
+    link(href='#{$template.assets}/css/app.css', rel='stylesheet')
+  body
+    h1 UBlog! Livereload
+    .container
+      block content
+    // JS
+    script(src='http://localhost:35729/livereload.js?snipver=1')
+    script(src='http://code.jquery.com/jquery-2.1.1.min.js')
+    script(src='#{$template.assets}/js/app.js')
