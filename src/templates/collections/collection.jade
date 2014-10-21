@@ -1,17 +1,20 @@
 extends ../index.jade
 block content
-  div.container
-    each post in posts
-      div.row
-        div.col-sm-12
-          h2= post.title
-          small= post.date
-          !=post.contents.toString()
+  each post in posts
+    .post-preview
+      a(href=post.url)
+        h2.post-title= post.title
+        // !=post.contents.toString()
+      p.post-meta= moment(post.date).format("LL")
+    hr
 
-    =collections
+  ul.pager
     if prev
-      a(href=prev.url) Prev
-    if next
-      a(href=next.url) Next
+      li.prev
+        a(href=prev.url) <- Newer Posts
 
-    Page #{start} of #{total}
+    if next
+      li.next
+        a(href=next.url) Older Posts →
+
+     //  Page #{start} of #{total}

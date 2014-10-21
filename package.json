@@ -18,24 +18,31 @@
     "blog",
     "wordpress"
   ],
+  "license": "AGPL",
   "dependencies": {
     "check-types": "^1.3.2",
     "chokidar": "^0.10.0",
+    "highlight.js": "^8.2.0",
+    "jade": "^1.7.0",
     "metalsmith": "^1.0.1",
+    "metalsmith-copy": "^0.1.2",
     "metalsmith-define": "0.0.1",
+    "metalsmith-ignore": "^0.1.2",
+    "metalsmith-multiple-collections": "0.0.1",
+    "metalsmith-page-url": "0.0.1",
+    "metalsmith-pattern-move": "0.0.1",
+    "metalsmith-permalinks": "^0.4.0",
+    "metalsmith-rho": "0.0.1",
+    "metalsmith-save-original-location": "0.0.1",
+    "metalsmith-slug": "0.0.5",
     "metalsmith-templates": "^0.6.0",
+    "metalsmith-title": "0.0.1",
+    "moment": "^2.8.3",
+    "node-static": "^0.7.6",
+    "rho-on-steroids": "0.0.1",
     "sharp": "^0.6.2",
     "string": "^2.1.0",
     "tiny-lr": "^0.1.4",
-    "underscore": "^1.7.0",
-    "highlight.js": "^8.2.0",
-    "jade": "^1.7.0",
-    "metalsmith-copy": "^0.1.2",
-    "metalsmith-ignore": "^0.1.2",
-    "metalsmith-markdown": "^0.2.1",
-    "metalsmith-permalinks": "^0.4.0",
-    "metalsmith-slug": "0.0.5",
-    "metalsmith-title": "0.0.1"
-  },
-  "license": "AGPL"
+    "underscore": "^1.7.0"
+  }
 }
