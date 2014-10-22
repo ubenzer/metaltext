@@ -37,7 +37,7 @@ if (serve) {
   }, buildAction, 35000);
 }
 
-var imageTypeDimensionsLookup = {
+/*var imageTypeDimensionsLookup = {
   medium: [
     {
       name: ":file-:hash-medium",
@@ -46,7 +46,7 @@ var imageTypeDimensionsLookup = {
       height: null
     }
   ]
-};
+};*/
 
 buildAction();
 function buildAction() {
@@ -216,7 +216,7 @@ function buildAction() {
       var _ = require("underscore");
       return function normalizeIds(files, metalsmith, done) {
 
-        _.each(files, function (data, file) {
+        _.each(files, function (data) {
           // normalize links
           _.each(data.$tbProcessedLinks, function (linkDetail, url) {
             var normalizedUrl = normalizeUrl(data, url);
