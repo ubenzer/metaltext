@@ -15,7 +15,7 @@ Let's put some more content here to make sure it works.
 
 ### A super photo
 
-To make a happy start, I'll attach an [Antalya](//antalya.bel.tr)[external] photo bellow.
+To make a happy start, I'll attach an [Antalya](//antalya.bel.tr){blank} photo bellow
 
-![Konyaaltı Beach, Antalya](konyaalti.jpg)[big]
+![Konyaaltı Beach, Antalya](konyaalti.jpg){big}
 

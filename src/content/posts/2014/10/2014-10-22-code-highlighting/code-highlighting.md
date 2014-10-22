@@ -23,5 +23,11 @@ will be rendered as a coloured *JavaScript* code at some point.
 
 In [this post](@2014-10-21-hello-world) _(yes I am testing relative link compiling)_ I've posted an image of Antalya. Here it is:
 
-![Konyaaltı Beach, Antalya](@2014-10-21-hello-world/konyaalti.jpg)[big]
+[![Konyaaltı Beach, Antalya](@2014-10-21-hello-world/konyaalti.jpg){big}](@2014-10-21-hello-world/konyaalti.jpg){blank}
+
+![Konyaaltı Beach, Antalya](@2014-10-21-hello-world/konyaalti.jpg){big}
+
+![Konyaaltı Beach, Antalya](@2014-10-21-hello-world/konyaalti.jpg) {a text in brackets!}
+
+TheEnd!
 
