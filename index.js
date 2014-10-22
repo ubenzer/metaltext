@@ -14,13 +14,28 @@ var metalsmith 		       = require("metalsmith"),
     define							 = require("metalsmith-define"),
     s 									 = require("string"),
     _										 = require("underscore"),
-    statik               = require("node-static"),
-    moment               = require("moment");
-    //check 							 = require("check-types");
-    //excerpts       = require("metalsmith-excerpts"),
-    //atom           = require("metalsmith-atom"),
+    moment               = require("moment"),
+    Server               = require("./lib/server");
+    //check 						 = require("check-types");
+    //excerpts           = require("metalsmith-excerpts"),
+    //atom               = require("metalsmith-atom"),
 
-moment.locale("tr");
+// Initial config
+moment.locale("tr"); // Set locale
+var source = "src";
+var destination = "build";
+var serve = true;
+var port = 8080;
+
+var server = null;
+if (serve) {
+  server = new Server();
+  server.startServer(path.join(__dirname, destination), port);
+  server.startAutoreload(path.join(__dirname, source), {
+    ignored: /[\/\\]\./,
+    ignoreInitial: true
+  }, buildAction, 35000);
+}
 
 var imageTypeDimensionsLookup = {
   medium: [
@@ -33,41 +48,12 @@ var imageTypeDimensionsLookup = {
   ]
 };
 
-// TEMPORARY AUTORELOAD
-var tinylr = require("tiny-lr");
-var lrserver = tinylr();
-lrserver.listen(35729, function(err) {
-  if (err) { return console.log(err); }
-});
-
-
-require("chokidar").watch(path.join(__dirname, "src"), {
-  ignored: /[\/\\]\./,
-  ignoreInitial: true
-}).on("all", _.debounce(function(event, path) {
-  console.log(event, path);
-  msAction();
-  console.log("trigger reload");
-  setTimeout(function() {
-    lrserver.changed({body:{files:path}});
-  }, 2000);
-}, 500));
-
-// TEMPORARY SERVER
-var fileServer = new statik.Server(path.join(__dirname, "build"));
-
-require("http").createServer(function (request, response) {
-  request.addListener("end", function () {
-    fileServer.serve(request, response);
-  }).resume();
-}).listen(8080);
-
-msAction();
-function msAction() {
+buildAction();
+function buildAction() {
   var tbProcessedImagesGlobal = {};
   metalsmith(__dirname)
-    .source("src")
-    .destination("build")
+    .source(source)
+    .destination(destination)
     .use(ignore([
       "templates/**/*"
     ]))
@@ -216,7 +202,8 @@ function msAction() {
           return !(surl.contains("://") || surl.startsWith("//"));
         }
 
-      }
+      },
+      match: "**/*.md"
     }))
     //.use(markdown({
     //	highlight: function (code) {
@@ -331,7 +318,13 @@ function msAction() {
     //}))
     .build(function (err, files) {
       if (err) {
-        throw err;
+        console.error("Build error occurred");
+        console.error(err);
+        return;
+      }
+      console.log("Build complete. " + Object.keys(files).length + " files processed.");
+      if (server !== null) {
+        server.noftyBuildEnd();
       }
     });
 
@@ -344,7 +337,7 @@ function msAction() {
   function renderA(text, href, flags) {
     return "<a href=\"" + href + "\" class=\"" + s(_.reduce(flags, function (prev, cur) {
         return prev + " " + cur;
-      }, "")).trim().s + "\"" + (_.contains(flags, "external") ? "target=\"_blank\"" : "") + ">" + text + "</a>";
+      }, "")).trim().s + "\"" + (_.contains(flags, "blank") ? "target=\"_blank\"" : "") + ">" + text + "</a>";
   }
 
   function generateParseLater(thing, type) {
