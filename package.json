@@ -24,6 +24,7 @@
     "cheerio": "^0.17.0",
     "chokidar": "^0.10.0",
     "debug": "^2.1.0",
+    "extendify": "^0.1.0",
     "highlight.js": "^8.2.0",
     "jade": "^1.7.0",
     "metalsmith": "^1.0.1",

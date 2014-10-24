@@ -17,9 +17,8 @@ var metalsmith 		       = require("metalsmith"),
     moment               = require("moment"),
     Server               = require("./lib/server"),
     excerpts             = require("./lib/excerpts.js"),
-    removeTitle          = require("./lib/removeFirstTitle.js");
-    //check 						 = require("check-types");
-    //atom               = require("metalsmith-atom"),
+    removeTitle          = require("./lib/removeFirstTitle.js"),
+    gzip                 = require("./lib/gzip.js"),
 
 // Initial config
 moment.locale("tr"); // Set locale
@@ -320,9 +319,7 @@ function buildAction() {
     //.use(minify({
     //	path: "static/js/*"
     //}))
-    //.use(gzip({
-    //	path: "*"
-    //}))
+    .use(gzip())
     .build(function (err, files) {
       if (err) {
         console.error("Build error occurred");
