@@ -327,15 +327,15 @@ function buildAction() {
     .use(htmlMinifier())
     .use(gzip())
     .build(function (err, files) {
+      if (server !== null) {
+        server.noftyBuildEnd();
+      }
       if (err) {
         console.error("Build error occurred");
         console.error(err);
         return;
       }
       console.log("Build complete. " + Object.keys(files).length + " files processed.");
-      if (server !== null) {
-        server.noftyBuildEnd();
-      }
     });
 
   function renderImg(alt, src, flags) {
