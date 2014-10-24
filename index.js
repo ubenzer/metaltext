@@ -19,6 +19,8 @@ var metalsmith 		       = require("metalsmith"),
     excerpts             = require("./lib/excerpts.js"),
     removeTitle          = require("./lib/removeFirstTitle.js"),
     gzip                 = require("./lib/gzip.js"),
+    uglify               = require("metalsmith-uglify"),
+    htmlMinifier         = require("metalsmith-html-minifier");
 
 // Initial config
 moment.locale("tr"); // Set locale
@@ -316,9 +318,11 @@ function buildAction() {
     //.use(less({
     //	path: "static/less/*"
     //}))
-    //.use(minify({
-    //	path: "static/js/*"
-    //}))
+    .use(uglify({
+      filter: ["assets/js/**/*.js", "!assets/js/lib/**"],
+      sourceMap: true
+    }))
+    .use(htmlMinifier())
     .use(gzip())
     .build(function (err, files) {
       if (err) {
