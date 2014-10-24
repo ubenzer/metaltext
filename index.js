@@ -17,6 +17,7 @@ var metalsmith 		       = require("metalsmith"),
     moment               = require("moment"),
     Server               = require("./lib/server"),
     excerpts             = require("./lib/excerpts.js"),
+    removeTitle          = require("./lib/removeFirstTitle.js");
     //check 						 = require("check-types");
     //atom               = require("metalsmith-atom"),
 
@@ -205,6 +206,9 @@ function buildAction() {
       match: "**/*.md"
     }))
     .use(excerpts({
+      src: ["content/**/*.html"]
+    }))
+    .use(removeTitle({
       src: ["content/**/*.html"]
     }))
     //.use(markdown({
