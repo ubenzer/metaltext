@@ -4,8 +4,9 @@ block content
     .post-preview
       a(href=post.url)
         h2.post-title= post.title
-        // !=post.contents.toString()
       p.post-meta= moment(post.date).format("LL")
+      p.post-content.excerpt
+        != post.excerpt
     hr
 
   ul.pager

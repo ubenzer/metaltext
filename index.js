@@ -15,9 +15,9 @@ var metalsmith 		       = require("metalsmith"),
     s 									 = require("string"),
     _										 = require("underscore"),
     moment               = require("moment"),
-    Server               = require("./lib/server");
+    Server               = require("./lib/server"),
+    excerpts             = require("./lib/excerpts.js"),
     //check 						 = require("check-types");
-    //excerpts           = require("metalsmith-excerpts"),
     //atom               = require("metalsmith-atom"),
 
 // Initial config
@@ -133,7 +133,6 @@ function buildAction() {
         }
       }
     }))
-    //.use(excerpts())
     .use(slug({
       patterns: ["*.md"],
       property: "title"
@@ -204,6 +203,9 @@ function buildAction() {
 
       },
       match: "**/*.md"
+    }))
+    .use(excerpts({
+      src: ["content/**/*.html"]
     }))
     //.use(markdown({
     //	highlight: function (code) {
