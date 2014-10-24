@@ -20,7 +20,8 @@ var metalsmith 		       = require("metalsmith"),
     removeTitle          = require("./lib/removeFirstTitle.js"),
     gzip                 = require("./lib/gzip.js"),
     uglify               = require("metalsmith-uglify"),
-    htmlMinifier         = require("metalsmith-html-minifier");
+    htmlMinifier         = require("metalsmith-html-minifier"),
+    sass                 = require("metalsmith-sass");
 
 // Initial config
 moment.locale("tr"); // Set locale
@@ -315,9 +316,10 @@ function buildAction() {
     //.use(generateImages({
     //	imageList: metalsmith.images
     //}))
-    //.use(less({
-    //	path: "static/less/*"
-    //}))
+    .use(sass({
+      outputStyle: "compressed",
+      imagePath: "assets/img"
+    }))
     .use(uglify({
       filter: ["assets/js/**/*.js", "!assets/js/lib/**"],
       sourceMap: true
