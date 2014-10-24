@@ -34,7 +34,8 @@ if (serve) {
   server.startServer(path.join(__dirname, destination), port);
   server.startAutoreload(path.join(__dirname, source), {
     ignored: /[\/\\]\./,
-    ignoreInitial: true
+    ignoreInitial: true,
+    persistent: true
   }, buildAction, 35000);
 }
 
