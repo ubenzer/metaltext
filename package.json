@@ -26,7 +26,7 @@
     "jade": "^1.7.0",
     "metalsmith": "^1.0.1",
     "metalsmith-copy": "^0.1.2",
-    "metalsmith-define": "0.0.1",
+    "metalsmith-define": "^1.0.0",
     "metalsmith-ignore": "^0.1.2",
     "metalsmith-multiple-collections": "0.0.1",
     "metalsmith-page-url": "0.0.1",
