@@ -1,5 +1,5 @@
 "use strict";
-var metalsmith 		       = require("metalsmith"),
+var Metalsmith 		       = require("metalsmith"),
     collections          = require("metalsmith-multiple-collections"),
     patternMove          = require("metalsmith-pattern-move"),
     templates            = require("metalsmith-templates"),
@@ -20,6 +20,7 @@ var metalsmith 		       = require("metalsmith"),
     removeTitle          = require("./lib/removeFirstTitle.js"),
     gzip                 = require("./lib/gzip.js"),
     uglify               = require("metalsmith-uglify"),
+    times                = require("./lib/times"),
     htmlMinifier         = require("metalsmith-html-minifier"),
     sass                 = require("metalsmith-sass");
 
@@ -41,6 +42,9 @@ if (serve) {
   }, buildAction, 35000);
 }
 
+/* Enable metalsmith time calculating for each plugin */
+var metalsmith = new Metalsmith(__dirname);
+times(metalsmith);
 /*var imageTypeDimensionsLookup = {
   medium: [
     {
@@ -55,14 +59,14 @@ if (serve) {
 buildAction();
 function buildAction() {
   var tbProcessedImagesGlobal = {};
-  metalsmith(__dirname)
+  metalsmith
     .source(source)
     .destination(destination)
     .use(ignore([
       "templates/**/*"
-    ]))
-    .use(saveOriginalLocation())
-    .use(title())
+    ]), "ignore")
+    .use(saveOriginalLocation(), "saveOriginalLocation")
+    .use(title(), "title")
     .use(collections({
       src: "**/*.md",
       templateDir: "collections",
@@ -136,11 +140,11 @@ function buildAction() {
           reverse: true
         }
       }
-    }))
+    }), "collections")
     .use(slug({
       patterns: ["*.md"],
       property: "title"
-    }))
+    }), "slug")
     .use(patternMove({
       cwd: "content/posts",
       src: "**/*",
@@ -169,7 +173,7 @@ function buildAction() {
 
         return extension === ".md" && directoryOfFile.split(path.sep).length <= 3;
       }
-    }))
+    }), "patternMove")
     .use(supportRho({
       blockCompiler: function (file, data) {
         return rhoSteroid({
@@ -207,20 +211,20 @@ function buildAction() {
 
       },
       match: "**/*.md"
-    }))
+    }), "supportRho")
     .use(excerpts({
       src: ["content/**/*.html"]
-    }))
+    }), "excerpts")
     .use(removeTitle({
       src: ["content/**/*.html"]
-    }))
+    }), "removeTitle")
     //.use(markdown({
     //	highlight: function (code) {
     //		return require("highlight.js").highlightAuto(code).value;
     //	}
     //	// override a tag to fix path and open x-domain new tab
     //}))
-    .use(url())
+    .use(url(), "url")
     .use((function fillIdUrlMap(globalTbProcessedImageList) {
       var _ = require("underscore");
       return function normalizeIds(files, metalsmith, done) {
@@ -305,27 +309,27 @@ function buildAction() {
       $template: {
         assets: "/assets"
       }
-    }))
+    }), "define")
     .use(templates({
       engine: "jade",
       directory: "src/templates",
       default: "jade-partials/post.jade",
       pattern: ["**/*.html", "**/*.rss"],
       pretty: true
-    }))
+    }), "templates")
     //.use(generateImages({
     //	imageList: metalsmith.images
     //}))
     .use(sass({
       outputStyle: "compressed",
       imagePath: "assets/img"
-    }))
+    }), "sass")
     .use(uglify({
       filter: ["assets/js/**/*.js", "!assets/js/lib/**"],
       sourceMap: true
-    }))
-    .use(htmlMinifier())
-    .use(gzip())
+    }), "uglify")
+    //.use(htmlMinifier())
+    .use(gzip(), "gzip")
     .build(function (err, files) {
       if (server !== null) {
         server.noftyBuildEnd();
