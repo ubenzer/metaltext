@@ -76,7 +76,7 @@ function buildAction() {
           permalink: "collections/:collection/:collectionItem/:page/index.html",
           fistPagePermalink: "collections/:collection/:collectionItem/index.html",
           pageLimit: null,
-          paginateBy: 2
+          paginateBy: 10
         }, {
           file: "rss.jade",
           fistPagePermalink: "collections/:collection/:collectionItem.rss",
@@ -98,7 +98,13 @@ function buildAction() {
               permalink: "sayfa/:page/index.html",
               fistPagePermalink: "index.html",
               pageLimit: null,
-              paginateBy: 2
+              paginateBy: 10
+            },
+            {
+              file: "rss.jade",
+              fistPagePermalink: "feed.rss",
+              pageLimit: 1,
+              paginateBy: 10
             }
           ]
         },
@@ -117,12 +123,18 @@ function buildAction() {
             permalink: "date/:collectionItem/:page/index.html",
             fistPagePermalink: "date/:collectionItem/index.html",
             pageLimit: null,
-            paginateBy: 2
+            paginateBy: 10
           }, {
             file: "rss.jade",
-            fistPagePermalink: "date/:collectionItem.rss",
-            pageLimit: 1
+            fistPagePermalink: "date/:collectionItem.atom",
+            pageLimit: 1,
+            paginateBy: 10
           }]
+        },
+        tag: {
+          name: "Tags",
+          sortBy: "date",
+          reverse: true
         },
         category: {
           name: "Categories",
@@ -308,6 +320,13 @@ function buildAction() {
       moment: moment,
       $template: {
         assets: "/assets"
+      },
+      $site: {
+        name: "My blog",
+        description: "My sample blog",
+        url: "http://myblog.com", // If you have SSL, use https,
+        buildDate: new Date(),
+        language: "tr-TR"
       }
     }), "define")
     .use(templates({
