@@ -42,9 +42,7 @@ if (serve) {
   }, buildAction, 35000);
 }
 
-/* Enable metalsmith time calculating for each plugin */
-var metalsmith = new Metalsmith(__dirname);
-times(metalsmith);
+
 /*var imageTypeDimensionsLookup = {
   medium: [
     {
@@ -59,6 +57,10 @@ times(metalsmith);
 buildAction();
 function buildAction() {
   var tbProcessedImagesGlobal = {};
+  /* Enable metalsmith time calculating for each plugin */
+  var metalsmith = new Metalsmith(__dirname);
+  times(metalsmith);
+
   metalsmith
     .source(source)
     .destination(destination)
