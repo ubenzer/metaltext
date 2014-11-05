@@ -24,27 +24,27 @@
 @import "input-groups";
 @import "navs";
 @import "navbar";
-//@import "breadcrumbs";
-//@import "pagination";
-//@import "pager";
-//@import "labels";
-//@import "badges";
-//@import "jumbotron";
-//@import "thumbnails";
-//@import "alerts";
-//@import "progress-bars";
-//@import "media";
-//@import "list-group";
-//@import "panels";
-//@import "responsive-embed";
-//@import "wells";
-//@import "close";
+@import "breadcrumbs";
+@import "pagination";
+@import "pager";
+@import "labels";
+@import "badges";
+@import "jumbotron";
+@import "thumbnails";
+@import "alerts";
+@import "progress-bars";
+@import "media";
+@import "list-group";
+@import "panels";
+@import "responsive-embed";
+@import "wells";
+@import "close";
 
 // Components w/ JavaScript
-//@import "modals";
-//@import "tooltip";
-//@import "popovers";
-//@import "carousel";
+@import "modals";
+@import "tooltip";
+@import "popovers";
+@import "carousel";
 
 // Utility classes
 @import "utilities";
