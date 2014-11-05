@@ -18,7 +18,7 @@ var Metalsmith 		       = require("metalsmith"),
     Server               = require("./lib/server"),
     excerpts             = require("./lib/excerpts.js"),
     removeTitle          = require("./lib/removeFirstTitle.js"),
-    gzip                 = require("./lib/gzip.js"),
+    gzip                 = require("metalsmith-gzip"),
     uglify               = require("metalsmith-uglify"),
     times                = require("./lib/times"),
     htmlMinifier         = require("metalsmith-html-minifier"),
@@ -362,7 +362,7 @@ function buildAction() {
       sourceMap: true
     }), "uglify")
     //.use(htmlMinifier())
-    .use(gzip(), "gzip")
+    .use(gzip({src: "**/*"}), "gzip")
     .build(function (err, files) {
       if (server !== null) {
         server.noftyBuildEnd();
