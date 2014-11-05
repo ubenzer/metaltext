@@ -86,6 +86,18 @@ function buildAction() {
           paginateBy: 10
         }
       ],
+      collectionContentsTemplates: [
+        {
+          file: "collectionContents.jade",
+          permalink: "collections/:collection/index.html"
+        }
+      ],
+      collectionListTemplates: [
+        {
+          file: "collectionList.jade",
+          permalink: "collections/index.html"
+        }
+      ],
       collections: {
         all: {
           name: "All",
