@@ -238,9 +238,6 @@ function buildAction() {
       },
       match: "**/*.md"
     }), "supportRho")
-    .use(excerpts({
-      src: ["content/**/*.html"]
-    }), "excerpts")
     .use(removeTitle({
       src: ["content/**/*.html"]
     }), "removeTitle")
@@ -329,6 +326,9 @@ function buildAction() {
         }
       };
     })(tbProcessedImagesGlobal))
+    .use(excerpts({
+      src: ["content/**/*.html"]
+    }), "excerpts")
     .use(define({
       /* Assign global template related vars */
       moment: moment,
