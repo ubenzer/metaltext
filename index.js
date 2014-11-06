@@ -354,8 +354,7 @@ function buildAction() {
     //	imageList: metalsmith.images
     //}))
     .use(sass({
-      outputStyle: "compressed",
-      imagePath: "assets/img"
+      outputStyle: "expanded"
     }), "sass")
     .use(uglify({
       filter: ["assets/js/**/*.js", "!assets/js/lib/**"],
