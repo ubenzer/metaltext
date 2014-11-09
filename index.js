@@ -7,7 +7,6 @@ var Metalsmith 		       = require("metalsmith"),
     url                  = require("metalsmith-page-url"),
     slug                 = require("metalsmith-slug"),
     title 			         = require("metalsmith-title"),
-    saveOriginalLocation = require("metalsmith-save-original-location"),
     supportRho     			 = require("metalsmith-support-rho"),
     rhoSteroid					 = require("rho-on-steroids"),
     path   				       = require("path"),
@@ -67,7 +66,6 @@ function buildAction() {
     .use(ignore([
       "templates/**/*"
     ]), "ignore")
-    .use(saveOriginalLocation(), "saveOriginalLocation")
     .use(title(), "title")
     .use(collections({
       src: "**/*.md",

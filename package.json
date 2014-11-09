@@ -38,7 +38,6 @@
     "metalsmith-pattern-move": "0.0.1",
     "metalsmith-permalinks": "^0.4.0",
     "metalsmith-sass": "^0.5.0",
-    "metalsmith-save-original-location": "0.0.1",
     "metalsmith-slug": "0.0.5",
     "metalsmith-support-rho": "0.0.1",
     "metalsmith-templates": "^0.6.0",
