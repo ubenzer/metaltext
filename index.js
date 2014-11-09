@@ -247,7 +247,6 @@ function buildAction() {
     //}))
     .use(url(), "url")
     .use((function fillIdUrlMap(globalTbProcessedImageList) {
-      var _ = require("underscore");
       return function normalizeIds(files, metalsmith, done) {
 
         _.each(files, function (data) {
