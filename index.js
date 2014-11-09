@@ -357,7 +357,7 @@ function buildAction() {
       filter: ["assets/js/**/*.js", "!assets/js/lib/**"],
       sourceMap: true
     }), "uglify")
-    //.use(htmlMinifier())
+    .use(htmlMinifier())
     .use(gzip({src: "**/*"}), "gzip")
     .build(function (err, files) {
       if (server !== null) {
