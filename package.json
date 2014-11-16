@@ -43,6 +43,7 @@
     "metalsmith-templates": "^0.6.0",
     "metalsmith-title": "0.0.1",
     "metalsmith-uglify": "0.0.6",
+    "metalsmith-word-count": "0.0.4",
     "moment": "^2.8.3",
     "multimatch": "^1.0.0",
     "node-static": "^0.7.6",

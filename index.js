@@ -21,10 +21,11 @@ var Metalsmith 		       = require("metalsmith"),
     uglify               = require("metalsmith-uglify"),
     times                = require("./lib/times"),
     htmlMinifier         = require("metalsmith-html-minifier"),
-    sass                 = require("metalsmith-sass");
+    sass                 = require("metalsmith-sass"),
+    wordcount            = require("metalsmith-word-count");
 
 // Initial config
-moment.locale("tr"); // Set locale
+moment.locale("en"); // Set locale
 var source = "src";
 var destination = "build";
 var serve = true;
@@ -323,6 +324,9 @@ function buildAction() {
         }
       };
     })(tbProcessedImagesGlobal))
+    .use(wordcount({
+      raw: true
+    }), "wordcount")
     .use(excerpts({
       src: ["content/**/*.html"]
     }), "excerpts")
