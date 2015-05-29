@@ -1,0 +1,19 @@
+{
+  "watch": true,
+  "serve": true,
+
+  "server": {
+    "port": 8080
+  },
+
+  "build": {
+    "source": "src",
+    "destination": "build"
+  },
+
+  "git": {
+    "enable": true,
+    "address": "",
+    "branch": ""
+  }
+}
