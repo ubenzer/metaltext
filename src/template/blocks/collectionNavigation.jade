@@ -1,8 +1,0 @@
-mixin collectionNavigation(contents)
-  if Object.keys(contents).length > 0
-    ul
-      each collectionContents, collectionContentsName in contents
-        li
-          a(href=collectionContents.page.url) #{collectionContents.name}
-            //span.badge.pull-right #{collectionContents.page.total}
-          +collectionNavigation(collectionContents.subcontents)
