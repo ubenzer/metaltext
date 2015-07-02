@@ -1,9 +1,8 @@
 {
   "name": "metaltext",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A static site generator powered by Metalsmith",
   "author": "Umut Benzer <umut@benzer.me>",
-  "main": "index.js",
   "bin": {
     "metaltext": "bin/index.js"
   },
