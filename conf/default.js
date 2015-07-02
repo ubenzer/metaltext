@@ -1,8 +1,10 @@
 "use strict";
+var path = require("path");
+
 module.exports = {
   build: {
-    source: "src",
-    destination: "build"
+    source: path.join(process.cwd(), "src"),
+    destination: path.join(process.cwd(), "build")
   },
 
   frontend: {

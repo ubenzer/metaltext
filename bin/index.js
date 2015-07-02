@@ -1,17 +1,19 @@
+#!/usr/bin/env node
+
 "use strict";
 var Metalsmith = require("metalsmith");
-var collections = require("metalsmith-multiple-collections");
+var collections = require("metalsmith-json-taxonomy");
 var patternMove = require("metalsmith-pattern-move");
-var rhoRenderHelpers = require("./lib/rhoRenderHelpers.js");
-var createPostJson = require("./lib/createPostJson.js");
-var createCollectionJson = require("./lib/createCollectionJson.js");
+var rhoRenderHelpers = require("../lib/rhoRenderHelpers.js");
+var createPostJson = require("../lib/createPostJson.js");
+var createCollectionJson = require("../lib/createCollectionJson.js");
 var title = require("metalsmith-title");
 var supportRho = require("metalsmith-support-rho");
-var excerpts = require("./lib/excerpts.js");
-var removeTitle = require("./lib/removeFirstTitle.js");
-var program = require("./lib/program.js");
+var excerpts = require("../lib/excerpts.js");
+var removeTitle = require("../lib/removeFirstTitle.js");
+var program = require("../lib/program.js");
 var gzip = require("metalsmith-gzip");
-var times = require("./lib/times");
+var times = require("../lib/times");
 var htmlMinifier = require("metalsmith-html-minifier");
 var wordcount = require("metalsmith-word-count");
 

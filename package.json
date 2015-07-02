@@ -4,6 +4,9 @@
   "description": "A static site generator powered by Metalsmith",
   "author": "Umut Benzer <umut@benzer.me>",
   "main": "index.js",
+  "bin": {
+    "metaltext": "bin/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ubenzer/metaltext.git"
