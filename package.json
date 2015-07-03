@@ -1,6 +1,6 @@
 {
   "name": "metaltext",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A static site generator powered by Metalsmith",
   "author": "Umut Benzer <umut@benzer.me>",
   "bin": {
@@ -18,7 +18,9 @@
     "static-site",
     "jekyll",
     "blog",
-    "wordpress"
+    "wordpress",
+    "collections",
+    "taxonomy"
   ],
   "license": "MIT",
   "dependencies": {
@@ -29,7 +31,6 @@
     "metalsmith": "1.7.0",
     "metalsmith-gzip": "1.1.0",
     "metalsmith-html-minifier": "1.1.0",
-    "metalsmith-json-taxonomy": "0.0.1",
     "metalsmith-pattern-move": "0.0.1",
     "metalsmith-support-rho": "0.0.1",
     "metalsmith-title": "0.0.1",
@@ -37,6 +38,8 @@
     "moment": "2.10.3",
     "multimatch": "2.0.0",
     "rho-on-steroids": "0.0.1",
-    "string": "3.3.0"
+    "string": "3.3.0",
+    "minimatch": "2.0.8",
+    "slug": "0.9.1"
   }
 }

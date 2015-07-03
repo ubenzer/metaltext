@@ -2,7 +2,7 @@
 
 "use strict";
 var Metalsmith = require("metalsmith");
-var collections = require("metalsmith-json-taxonomy");
+var collections = require("../lib/collections.js");
 var patternMove = require("metalsmith-pattern-move");
 var rhoRenderHelpers = require("../lib/rhoRenderHelpers.js");
 var createPostJson = require("../lib/createPostJson.js");
