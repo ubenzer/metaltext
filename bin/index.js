@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony
+#!/usr/bin/env node
 
 "use strict";
 var config = require("../app/program.js").getConfig();
