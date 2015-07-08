@@ -4,7 +4,13 @@ var path = require("path");
 module.exports = {
   build: {
     source: path.join(process.cwd(), "src"),
-    destination: path.join(process.cwd(), "build")
+    destination: path.join(process.cwd(), "build", "data"),
+    feDestination: path.join(process.cwd(), "build"),
+    domain: null, // CNAME www.ubenzer.com
+    travis: {
+      privateKeyFile: null,
+      targetRepository: null
+    }
   },
 
   frontend: {

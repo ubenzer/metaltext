@@ -1,0 +1,45 @@
+language: node_js
+node_js:
+  - '0.12'
+before_install:
+  - openssl aes-256-cbc -K $encrypted_75f783071981_key -iv $encrypted_75f783071981_iv
+    -in travis.enc -out travis -d
+install:
+  - npm -g install gulp
+  - npm -g install metaltext
+  - npm -g install bower
+  - cd ..
+  - git clone --depth=1 https://github.com/${METALTEXT_FRONTEND_REPO}.git frontend
+  - cd frontend
+  - npm install
+  - bower install
+  - gulp build
+  - cd ..
+script:
+  - mkdir out
+  - mv frontend/dist/* out
+  - cd ubenzer.github.io
+  - metaltext --config ubenzer.js
+  - cd ..
+  - mkdir out/data
+  - mv ubenzer.github.io/build/* out/data
+after_success:
+  - eval "$(ssh-agent)"
+  - cd ubenzer.github.io
+  - chmod 600 travis # configure private key for push access
+  - ssh-add travis
+  - cd ..
+  - cd out
+  - git init
+  - git config user.name "Travis-CI"
+  - git config user.email "metaltext@ubenzer.com"
+  - git add .
+  - git commit -m "push"
+  - git push --force --quiet "git@github.com:${GH_REF}.git" master:master
+env:
+  global:
+    - GH_REF={{ targetRepository }}
+    - METALTEXT_FRONTEND_REPO=ubenzer/metaltext-fe
+branches:
+  only:
+    - config
