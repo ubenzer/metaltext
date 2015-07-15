@@ -49,10 +49,10 @@ function build() {
         match: "**/*.md"
       }), "supportRho")
       .use(removeTitle({
-        src: ["content/**/*.html"]
+        src: ["**/*.html"]
       }), "removeTitle")
       .use(excerpts({
-        src: ["content/**/*.html"]
+        src: ["**/*.html"]
       }), "excerpts")
       .use(wordcount({
         raw: true
