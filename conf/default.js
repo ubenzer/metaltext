@@ -5,6 +5,7 @@ module.exports = {
   build: {
     source: path.join(process.cwd(), "src"),
     destination: path.join(process.cwd(), "build", "data"),
+    feSource: "https://github.com/ubenzer/metaltext-fe/archive/release/bleeding-edge.zip",
     feDestination: path.join(process.cwd(), "build"),
     domain: null, // CNAME www.ubenzer.com
     travis: {

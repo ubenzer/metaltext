@@ -3,7 +3,7 @@
 var rmdir = require("rmdir");
 var config = require("./program.js").getConfig();
 var debug = require("debug")("clean");
-var mkdirp = require("mkdirp");
+var fs = require("fs-extra");
 
 module.exports = {
   cleanDestination: cleanDestination.bind(this, "destination"),
@@ -16,7 +16,7 @@ function cleanDestination(key) {
     return Promise.resolve();
   }
 
-  mkdirp.sync(config.build[key]);
+  fs.mkdirpSync(config.build[key]);
 
   return new Promise(function(resolve, reject) {
     rmdir(config.build[key], function(err) {

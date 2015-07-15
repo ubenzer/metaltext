@@ -2,11 +2,10 @@
 
 var Download = require("download");
 var config = require("./program.js").getConfig();
-var fs = require("fs");
+var fs = require("fs-extra");
 var path = require("path");
 var debug = require("debug")("frontend");
 var _ = require("lodash");
-var METALTEXT_FRONTEND_URL = "https://github.com/ubenzer/metaltext-fe/archive/release/bleeding-edge.zip";
 var ZIPBALL_DIR_NAME = "metaltext-fe-release-bleeding-edge";
 
 module.exports = {
@@ -20,27 +19,40 @@ function downloadFrontendAssets() {
     return Promise.resolve();
   }
 
+
   return new Promise(function(resolve, reject) {
-    new Download({
-        mode: "755",
-        extract: true
-      })
-      .get(METALTEXT_FRONTEND_URL, config.build.feDestination)
-      .rename(function(pth) {
-        var pths = pth.dirname.split(path.sep);
-        _.remove(pths, function(p) {
-          return p === ZIPBALL_DIR_NAME;
+    var feSource = config.build.feSource;
+    if (_.startsWith(feSource, "http")) {
+      new Download({
+          mode: "755",
+          extract: true
+        })
+        .get(feSource, config.build.feDestination)
+        .rename(function(pth) {
+          var pths = pth.dirname.split(path.sep);
+          _.remove(pths, function(p) {
+            return p === ZIPBALL_DIR_NAME;
+          });
+          pth.dirname = path.join.apply(this, pths);
+        })
+        .run(function(err) {
+          if (err) {
+            debug("Downloading frontend completed with errors!");
+            reject(err);
+          }
+          debug("Downloading frontend assets completed successfully!");
+          resolve();
         });
-        pth.dirname = path.join.apply(this, pths);
-      })
-      .run(function(err) {
+    } else {
+      fs.copy(feSource, config.build.feDestination, function(err) {
         if (err) {
-          debug("Downloading frontend completed with errors!");
+          debug("Copying frontend completed with errors!");
           reject(err);
         }
-        debug("Downloading frontend assets completed successfully!");
+        debug("Copying frontend assets completed successfully!");
         resolve();
       });
+    }
   });
 }
 
