@@ -44,7 +44,7 @@ function build() {
       }), "patternMove")
       .use(supportRho({
         blockCompiler: rhoRenderHelpers.getBlockCompilerOnSteroids({
-          staticFilePrefix: "/single"
+          staticFilePrefix: "single/"
         }),
         match: "**/*.md"
       }), "supportRho")

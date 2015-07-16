@@ -27,6 +27,7 @@ function getBlockCompilerOnSteroids(opts) {
               alt: escapedAlt
             });
             src = normalizeUrl(src).normalizedUrl;
+            return renderInnerImg(escapedAlt, src, flags);
           }
           return renderImg(escapedAlt, src, flags);
         },
@@ -34,10 +35,10 @@ function getBlockCompilerOnSteroids(opts) {
           if (checkOwnUrl(url)) {
             var normalizeReport = normalizeUrl(url);
             if (normalizeReport.idOnly) {
-              return renderInternalA(text, normalizeReport.normalizedUrl, flags);
+              return renderInternalA(text, normalizeReport.normalizedUrl, flags, true);
             }
 
-            return renderA(text, normalizeReport.normalizedUrl, flags);
+            return renderInternalA(text, normalizeReport.normalizedUrl, flags, false);
           }
           return renderA(text, url, flags);
         }
@@ -76,7 +77,7 @@ function getBlockCompilerOnSteroids(opts) {
         };
       }
 
-      var normalizedUrl = (s(opts.staticFilePrefix).ensureRight("/").s) + (surlWithReference.replaceAll("@" + reference + "@", groupMaster.$groupUrl)).s;
+      var normalizedUrl = opts.staticFilePrefix + (surlWithReference.replaceAll("@" + reference + "@", groupMaster.$groupUrl)).s;
 
       return {
         idOnly: false,
@@ -101,14 +102,20 @@ function renderImg(alt, src, flags) {
     }, "")).trim().s + "\">";
 }
 
+function renderInnerImg(alt, src, flags) {
+  return "<img mtx-src=\"" + src + "\" alt=\"" + alt + "\" class=\"" + s(_.reduce(flags, function(prev, cur) {
+      return prev + " " + cur;
+    }, "")).trim().s + "\">";
+}
+
 function renderA(text, href, flags) {
   return "<a href=\"" + href + "\" class=\"" + s(_.reduce(flags, function(prev, cur) {
       return prev + " " + cur;
     }, "")).trim().s + "\"" + (_.contains(flags, "blank") ? "target=\"_blank\"" : "") + ">" + text + "</a>";
 }
 
-function renderInternalA(text, id, flags) {
-  return "<a mtx-href=\"" + id + "\" class=\"" + s(_.reduce(flags, function(prev, cur) {
+function renderInternalA(text, id, flags, managedByFrontend) {
+  return "<a mtx-href=\"" + id + "\" mtx-fe-route=\"" + managedByFrontend + "\" class=\"" + s(_.reduce(flags, function(prev, cur) {
       return prev + " " + cur;
     }, "")).trim().s + "\"" + ">" + text + "</a>";
 }
