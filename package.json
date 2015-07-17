@@ -1,6 +1,6 @@
 {
   "name": "metaltext",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A static site generator powered by Metalsmith",
   "author": "Umut Benzer <umut@benzer.me>",
   "bin": {

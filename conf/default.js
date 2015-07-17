@@ -19,9 +19,8 @@ module.exports = {
       title: "Navigation"
     },
     common: {
-      name: "Ubenzer.com",
-      logo: "assets/img/logo.png",
-      background: "assets/img/headerBg.jpg"
+      name: "Your Site Title",
+      allPostsTitle: "All Posts"
     }
   },
 
