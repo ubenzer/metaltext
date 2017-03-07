@@ -1,5 +1,7 @@
 # Metaltext
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ubenzer/metaltext.svg)](https://greenkeeper.io/)
+
 [![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 [![dependencies](https://david-dm.org/ubenzer/metaltext.png)](https://david-dm.org/ubenzer/metaltext)
