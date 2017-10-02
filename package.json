@@ -26,7 +26,7 @@
   "dependencies": {
     "cheerio": "0.19.0",
     "commander": "2.8.1",
-    "debug": "2.2.0",
+    "debug": "2.6.9",
     "download": "4.1.2",
     "fs-extra": "^0.22.1",
     "lodash": "3.9.3",
@@ -42,6 +42,12 @@
     "rho-on-steroids": "0.0.1",
     "rmdir": "1.1.0",
     "slug": "0.9.1",
-    "string": "3.3.0"
-  }
+    "string": "3.3.0",
+    "snyk": "^1.41.1"
+  },
+  "scripts": {
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "snyk": true
 }
