@@ -31,7 +31,7 @@
     "fs-extra": "^0.22.1",
     "lodash": "3.9.3",
     "metalsmith": "1.7.0",
-    "metalsmith-html-minifier": "1.1.0",
+    "metalsmith-html-minifier": "2.2.0",
     "metalsmith-pattern-move": "0.0.1",
     "metalsmith-support-rho": "0.0.1",
     "metalsmith-title": "0.0.1",
